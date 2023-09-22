@@ -8,7 +8,7 @@ const TodoHeader = () => {
   const [taskDes, setTaskDes] = useState("");
   const [editDes, setEditDes] = useState("");
   const initTaskList = useSelector((store) => store.task.listTask);
-  const editHeader = useSelector((store) => store.task.editTaskHead);
+  let editHeader = useSelector((store) => store.task.editTaskHead);
   console.log("header new ", editHeader);
   // console.log(initTaskList);
   const listTask = useSelector((store) => store.task.listTask);
@@ -54,6 +54,7 @@ const TodoHeader = () => {
 
   useEffect(() => {
     setEditDes(editHeader.title);
+    setTaskDes("");
   }, [editHeader]);
 
   return (
@@ -74,24 +75,21 @@ const TodoHeader = () => {
           type="text"
           value={editHeader.length === 0 ? taskDes : editDes}
           onChange={(e) => {
-            if (editHeader.length === 0) {
-              setTaskDes(e.target.value);
-            } else {
-              setEditDes(e.target.value);
-            }
+            setTaskDes(e.target.value);
+
+            setEditDes(e.target.value);
           }}
           placeholder="Enter your task"
           className="input input-bordered input-primary w-full max-w-xs"
         />
-        {editHeader.length === 0 ? (
-          <button className="btn btn-primary " onClick={handleAddTask}>
-            Add
-          </button>
-        ) : (
-          <button className="btn btn-primary " onClick={handleEditTask}>
-            Edit
-          </button>
-        )}
+
+        <button className="btn btn-primary " onClick={handleAddTask}>
+          Add
+        </button>
+
+        <button className="btn btn-primary " onClick={handleEditTask}>
+          Edit
+        </button>
       </div>
     </div>
   );

@@ -36,11 +36,11 @@ const taskSlice = createSlice({
         const updatedTaskIndex = state.listTask.findIndex(
           (task) => task.id === id
         );
-        state.listTask.splice(updatedTaskIndex, 1, updatedTask);
+        state.listTask.splice(updatedTaskIndex, 1);
 
         // Add the updated task at the beginning of the list
 
-        //   state.listTask.unshift(action.payload);
+        state.listTask.unshift(action.payload);
       }
     },
     addToHead: (state, action) => {
