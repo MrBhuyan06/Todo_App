@@ -1,7 +1,7 @@
 # TODO_APP_ASSIGMENT_CORESONANT
 
 **React**, **Tailwind**, **React_Redux_toolkit**,
-[DEMO](https://todo-rebu9nu4w-mrbhuyan06.vercel.app/)
+[DEMO](https://todo-aea0cdq74-mrbhuyan06.vercel.app/)
 
 ##Problem Statement
 Build a Todo application using React js that allows users to add, edit, and delete tasks. The
@@ -49,7 +49,7 @@ Do reach out if you have any project idea let's work together and achieve goals.
 - Run command 2: npm install
 - Run command 3: npm start
 
-If your webpage doesn't load hit this url in your browser(DEMO): https://todo-rebu9nu4w-mrbhuyan06.vercel.app/
+If your webpage doesn't load hit this url in your browser(DEMO): https://todo-aea0cdq74-mrbhuyan06.vercel.app/
 
 ### 🎉 Here you go your application is up and running... 🎉
 
