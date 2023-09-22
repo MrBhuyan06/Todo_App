@@ -20,6 +20,9 @@ const TodoBody = () => {
   function handleRenderCompleteTask() {
     setListTask(initTaskList.filter((task) => task.completed === true));
   }
+  function handleRenderPendingTask() {
+    setListTask(initTaskList.filter((task) => task.completed === false));
+  }
 
   useEffect(() => {
     getAllTodo();
@@ -39,8 +42,21 @@ const TodoBody = () => {
   }, [initTaskList]);
   // console.log("render");
   return (
-    <div>
-      <div className="flex justify-between w-2/3 mx-auto bg-slate-200 rounded-lg m-8">
+    <div className=" ">
+      <div className="flex justify-between  w-full md:w-2/3 mx-auto bg-slate-200 rounded-lg m-8">
+        <div className="form-control   ">
+          <label className="label cursor-pointer flex justify-start gap-2">
+            <input
+              type="radio"
+              name="radio-10"
+              className="radio checked:bg-red-500"
+              label="pendingtask"
+              onClick={handleRenderPendingTask}
+              //   checked={sort === "hightolow" ? true : false}
+            />
+            <span className="label-text">Pending Task</span>
+          </label>
+        </div>
         <div className="form-control   ">
           <label className="label cursor-pointer flex justify-start gap-2">
             <input
@@ -67,7 +83,7 @@ const TodoBody = () => {
           </label>
         </div>
       </div>
-      <div className="bg-gray-100 rounded-md mt-10 w-2/3 mx-auto">
+      <div className="bg-transparent rounded-md mt-10 w-2/3 mx-auto">
         <p className="text-center text-3xl underline text-blue-600 font-semibold">
           List Of Task
         </p>
