@@ -9,7 +9,6 @@ const TodoBody = () => {
   const [listTask, setListTask] = useState([]);
   const dispatch = useDispatch();
   const initTaskList = useSelector((store) => store.task.listTask);
-  console.log(initTaskList);
 
   useEffect(() => {
     getAllTodo();
@@ -24,10 +23,9 @@ const TodoBody = () => {
     dispatch(initialTask(data));
   }
   useEffect(() => {
-    console.log("hello");
     setListTask(initTaskList);
   }, [initTaskList]);
-  console.log("render");
+  // console.log("render");
   return (
     <div className="bg-gray-100 rounded-md mt-10 w-2/3 mx-auto">
       <p className="text-center text-3xl underline text-blue-600 font-semibold">
