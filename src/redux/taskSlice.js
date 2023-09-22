@@ -5,6 +5,7 @@ const taskSlice = createSlice({
   initialState: {
     listTask: [],
     editTaskHead: [],
+    completedList: [],
   },
   reducers: {
     initialTask: (state, action) => {
@@ -45,8 +46,30 @@ const taskSlice = createSlice({
     addToHead: (state, action) => {
       state.editTaskHead = action.payload;
     },
+
+    isComplete: (state, action) => {
+      const { id, title, completed } = action.payload;
+      console.log(id, title, completed);
+
+      const updatedTaskList = state.listTask.map((task) =>
+        task.id === id ? { ...task, completed } : task
+      );
+      completeListAdd: (state, playload) => {
+        state.completedList = state.listTask.filter(
+          (task) => task.completed === true
+        );
+      };
+      // Update the state with the updated task list
+      state.listTask = updatedTaskList;
+    },
   },
 });
-export const { initialTask, addTask, removeTodo, addToHead, editedTask } =
-  taskSlice.actions;
+export const {
+  initialTask,
+  addTask,
+  removeTodo,
+  addToHead,
+  editedTask,
+  isComplete,
+} = taskSlice.actions;
 export default taskSlice.reducer;

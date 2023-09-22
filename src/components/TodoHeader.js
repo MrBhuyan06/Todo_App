@@ -83,12 +83,15 @@ const TodoHeader = () => {
           placeholder="Enter your task"
           className="input input-bordered input-primary w-full max-w-xs"
         />
-        <button className="btn btn-primary " onClick={handleAddTask}>
-          Primary
-        </button>
-        <button className="btn btn-primary " onClick={handleEditTask}>
-          edit
-        </button>
+        {editHeader.length === 0 ? (
+          <button className="btn btn-primary " onClick={handleAddTask}>
+            Add
+          </button>
+        ) : (
+          <button className="btn btn-primary " onClick={handleEditTask}>
+            Edit
+          </button>
+        )}
       </div>
     </div>
   );

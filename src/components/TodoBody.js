@@ -10,7 +10,16 @@ const TodoBody = () => {
   const [listTask, setListTask] = useState([]);
   const dispatch = useDispatch();
   const initTaskList = useSelector((store) => store.task.listTask);
+
   console.log("here again", initTaskList);
+
+  function handleRenderAllTask() {
+    console.log("render");
+    setListTask(initTaskList);
+  }
+  function handleRenderCompleteTask() {
+    setListTask(initTaskList.filter((task) => task.completed === true));
+  }
 
   useEffect(() => {
     getAllTodo();
@@ -30,18 +39,47 @@ const TodoBody = () => {
   }, [initTaskList]);
   // console.log("render");
   return (
-    <div className="bg-gray-100 rounded-md mt-10 w-2/3 mx-auto">
-      <p className="text-center text-3xl underline text-blue-600 font-semibold">
-        List Of Task
-      </p>
-      <Filter />
-      {listTask.length === 0 ? (
-        <h1>Add The Task Please</h1>
-      ) : (
-        listTask.map((task) => {
-          return <Todo key={task.id} info={task} />;
-        })
-      )}
+    <div>
+      <div className="flex justify-between w-2/3 mx-auto bg-slate-200 rounded-lg m-8">
+        <div className="form-control   ">
+          <label className="label cursor-pointer flex justify-start gap-2">
+            <input
+              type="radio"
+              name="radio-10"
+              className="radio checked:bg-red-500"
+              label="alltask"
+              onClick={handleRenderAllTask}
+              //   checked={sort === "hightolow" ? true : false}
+            />
+            <span className="label-text">All Tasks</span>
+          </label>
+        </div>
+        <div className="form-control  ">
+          <label className="label cursor-pointer flex justify-start gap-2">
+            <input
+              type="radio"
+              name="radio-10"
+              className="radio checked:bg-blue-500"
+              label="completedtask"
+              onClick={handleRenderCompleteTask}
+            />
+            <span className="label-text">Completed Tasks</span>
+          </label>
+        </div>
+      </div>
+      <div className="bg-gray-100 rounded-md mt-10 w-2/3 mx-auto">
+        <p className="text-center text-3xl underline text-blue-600 font-semibold">
+          List Of Task
+        </p>
+
+        {listTask.length === 0 ? (
+          <h1>Add The Task Please</h1>
+        ) : (
+          listTask.map((task) => {
+            return <Todo key={task.id} info={task} />;
+          })
+        )}
+      </div>
     </div>
   );
 };
