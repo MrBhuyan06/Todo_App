@@ -1,16 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client.js";
+import Header from "./components/Header.js";
+import MainBody from "./components/MainBody.js";
 
 const App = () => {
   return (
     <>
-      <div className=" 0 navbar  bg-gray-100">
-        <div className=" mx-auto">
-          <a className="btn btn-ghost normal-case text-xl">
-            Todo_App_Assigment_By_CORESONANT
-          </a>
-        </div>
-      </div>
+      <Header />
+      <MainBody />
     </>
   );
 };
