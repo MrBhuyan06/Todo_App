@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import store from "../redux/store.js";
 import { addTask } from "../redux/taskSlice.js";
+import { editedTask } from "../redux/taskSlice.js";
 
 const TodoHeader = () => {
   const [taskDes, setTaskDes] = useState("");
+  const [editDes, setEditDes] = useState("");
   const initTaskList = useSelector((store) => store.task.listTask);
+  const editHeader = useSelector((store) => store.task.editTaskHead);
+  console.log("header new ", editHeader);
   // console.log(initTaskList);
   const listTask = useSelector((store) => store.task.listTask);
 
@@ -43,6 +47,15 @@ const TodoHeader = () => {
     setTaskDes("");
   }
 
+  function handleEditTask() {
+    console.log({ ...editHeader, title: editDes });
+    dispatch(editedTask({ ...editHeader, title: editDes }));
+  }
+
+  useEffect(() => {
+    setEditDes(editHeader.title);
+  }, [editHeader]);
+
   return (
     <div className="w-full p-2 mt-10">
       {lengthError && (
@@ -59,15 +72,22 @@ const TodoHeader = () => {
       <div className="w-full md:w-2/3 flex gap-4 items-center mx-auto">
         <input
           type="text"
-          value={taskDes}
+          value={editHeader.length === 0 ? taskDes : editDes}
           onChange={(e) => {
-            setTaskDes(e.target.value);
+            if (editHeader.length === 0) {
+              setTaskDes(e.target.value);
+            } else {
+              setEditDes(e.target.value);
+            }
           }}
           placeholder="Enter your task"
           className="input input-bordered input-primary w-full max-w-xs"
         />
         <button className="btn btn-primary " onClick={handleAddTask}>
           Primary
+        </button>
+        <button className="btn btn-primary " onClick={handleEditTask}>
+          edit
         </button>
       </div>
     </div>

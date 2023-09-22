@@ -6,9 +6,11 @@ import { initialTask } from "../redux/taskSlice.js";
 import store from "../redux/store.js";
 
 const TodoBody = () => {
+  const [alllistTask, setAllListTask] = useState([]);
   const [listTask, setListTask] = useState([]);
   const dispatch = useDispatch();
   const initTaskList = useSelector((store) => store.task.listTask);
+  console.log("here again", initTaskList);
 
   useEffect(() => {
     getAllTodo();
@@ -19,11 +21,12 @@ const TodoBody = () => {
       "https://jsonplaceholder.typicode.com/users/1/todos"
     );
     const data = await streamData.json();
-
+    setListTask(data);
     dispatch(initialTask(data));
   }
   useEffect(() => {
     setListTask(initTaskList);
+    setAllListTask(initTaskList);
   }, [initTaskList]);
   // console.log("render");
   return (
